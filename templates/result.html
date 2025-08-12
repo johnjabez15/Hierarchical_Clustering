@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clustering Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Clustering Results ({{ num_clusters }} Clusters)</h1>
+
+        <div class="card">
+            <h2>Cluster Summary</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cluster</th>
+                            <th>Count</th>
+                            <th>Avg GDP</th>
+                            <th>Avg Literacy Rate</th>
+                            <th>Avg Life Expectancy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in cluster_summary %}
+                        <tr>
+                            <td>{{ row.Cluster }}</td>
+                            <td>{{ row.Count }}</td>
+                            <td>{{ "{:,.2f}".format(row.Avg_GDP) }}</td>
+                            <td>{{ "{:,.2f}".format(row.Avg_Literacy_Rate) }}%</td>
+                            <td>{{ "{:,.2f}".format(row.Avg_Life_Expectancy) }} years</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Country Assignments</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Cluster</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in cluster_data %}
+                        <tr>
+                            <td>{{ row.Country }}</td>
+                            <td>{{ row.Cluster }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="link-container">
+            <a href="/">Make another selection</a>
+        </div>
+    </div>
+</body>
+</html>

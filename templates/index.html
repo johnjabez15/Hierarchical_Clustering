@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierarchical Clustering Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hierarchical Clustering Visualization</h1>
+        <div class="card">
+            <h2>Dendrogram</h2>
+            <p>This dendrogram visualizes the relationships between countries. To determine the number of clusters, you can look for the longest vertical lines that don't intersect a horizontal line.</p>
+            <img src="{{ url_for('static', filename='dendrogram.png') }}" alt="Hierarchical Clustering Dendrogram" class="dendrogram">
+        </div>
+
+        <div class="card">
+            <h2>Select Clusters</h2>
+            <form action="/result" method="post" class="cluster-form">
+                <label for="num_clusters">Select Number of Clusters (2-10):</label>
+                <input type="number" id="num_clusters" name="num_clusters" min="2" max="10" value="3" required>
+                <button type="submit">Show Results</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
